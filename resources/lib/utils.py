@@ -136,9 +136,9 @@ class SnapShot(object):
 
 def get_mjpeg_frame(stream):
     try:
-        stream.readline()
-        stream.readline()
         content_length = stream.readline()
+        while not "Content-Length" in content_length:
+            content_length = stream.readline()
         bytes = int(content_length.split(':')[-1])
         stream.readline()
         return stream.read(bytes)
