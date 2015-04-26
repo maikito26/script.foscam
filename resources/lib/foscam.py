@@ -80,7 +80,7 @@ class Camera(object):
                                                                                                     user,
                                                                                                     password)
 
-        self._stream_url_fmt = "http://{0}:{1}/cgi-bin/CGIStream.cgi?usr={2}&pwd={3}&cmd={{cmd}}".format(host,
+        self._stream_url_fmt = "http://{0}:{1}/cgi-bin/CGIStream.cgi?cmd={{cmd}}&usr={2}&pwd={3}".format(host,
                                                                                                     port,
                                                                                                     user,
                                                                                                     password)
