@@ -135,12 +135,15 @@ class SnapShot(object):
 
 
 def get_mjpeg_frame(stream):
+    content_length = ""
     try:
-        content_length = stream.readline()
-        while not "Content-Length" in content_length:
+        while not "Length" in content_length: 
             content_length = stream.readline()
+            log_verbose("Stream Readline: " + content_length)
         bytes = int(content_length.split(':')[-1])
-        stream.readline()
+        log_verbose("Stream JPEG Read Size: " + str(bytes))
+        content_length = stream.readline()
+        log_verbose("Stream Readline: " + content_length)
         return stream.read(bytes)
     except requests.RequestException as e:
         utils.log_error(str(e))
@@ -171,7 +174,8 @@ class ExtractMJPEGFrames(object):
             frame = get_mjpeg_frame(self.stream)
             if frame:
                 filename = os.path.join(self.path, "snapshot.{0}.jpg".format(time.time()))
-                open(filename, 'w').write(frame)
+                with open(filename, 'wb') as jpeg_file:
+                    jpeg_file.write(frame)
                 self.callback(filename, *self.callback_args)
                 log_verbose("Snapshot {0}".format(filename))
             current_time = time.time()

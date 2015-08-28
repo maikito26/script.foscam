@@ -80,12 +80,12 @@ class Camera(object):
                                                                                                     user,
                                                                                                     password)
 
-        self._stream_url_fmt = "http://{0}:{1}/cgi-bin/CGIStream.cgi?cmd={{cmd}}&usr={2}&pwd={3}".format(host,
+        self._stream_url_fmt = "http://{0}:{1}/cgi-bin/CGIStream.cgi?cmd={{cmd}}&usr={2}&pwd={3}&".format(host,
                                                                                                     port,
                                                                                                     user,
                                                                                                     password)
 
-        self._video_url = "rtsp://{0}:{1}@{2}:{3}/videoMain".format(user, password, host, port)
+        self._video_url = "rtsp://{0}:{1}@{2}:{3}/videoMain".format(host, port, user, password)
 
     @property
     def video_url(self):
