@@ -85,7 +85,7 @@ class Camera(object):
                                                                                                     user,
                                                                                                     password)
 
-        self._video_url = "rtsp://{0}:{1}@{2}:{3}/videoMain".format(host, port, user, password)
+        self._video_url = "rtsp://{0}:{1}@{2}:{3}/videoMain".format(user, password, host, port)
 
     @property
     def video_url(self):
